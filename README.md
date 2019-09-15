@@ -5,6 +5,8 @@
 |user_name|integer|null: false|
 |e-mail|integer|null: false|
 
+### Association
+
 - has_many :groups, through: :user_group
 - has_many :messages
 
@@ -14,8 +16,11 @@
 |------|----|-------|
 |group_name|string|null: false|
 
+### Association
 - has_many :users, through: :user_group
 - has_many :messages
+
+
 
 ## messageテーブル
 
@@ -26,8 +31,11 @@
 |group_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 
+### Association
 - belongs_to :group
 - belongs_to :user
+
+
 
 ## user_groupテーブル
 
