@@ -37,7 +37,6 @@
 - belongs_to :user
 
 
-
 ## user_groupテーブル
 
 |Column|Type|Options|
