@@ -17,7 +17,7 @@
 |name|string|null: false|
 
 ### Association
-- has_many:user_groups
+- has_many :user_groups
 - has_many :users, through: :user_group
 - has_many :messages
 
@@ -44,3 +44,7 @@
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :group
+- belongs_to :user
