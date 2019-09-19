@@ -125,11 +125,13 @@ text-decoration:none;
       top:30px;
       right:160px;
       position: absolute;
+      display:inline-block;
+    }
     &__file-send{
       display: none; 
     }
-    }
     &__btn{
+    float:right;
     height:50px;
     width:100px;
     margin:0 20px 15px;
