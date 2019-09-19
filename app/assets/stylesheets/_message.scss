@@ -20,6 +20,18 @@
   background-color:#2f3e51;
   height: calc(100vh - 100px);
   overflow:scroll;
+  padding:20px 20px;
+  &__group{
+    color:white;
+    margin-bottom:40px;
+    &__group-name{
+    font-size:15px;
+    margin-bottom:5px;
+    }
+    &__last-message{
+    font-size:11px;
+    }
+  }
 }
 }
 
