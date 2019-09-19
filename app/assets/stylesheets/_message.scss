@@ -112,6 +112,7 @@ text-decoration:none;
   height:90px;
   padding:0 15px;
    &__new-message{
+     position: relative;
      display:flex;
      padding:18px 5px;
     &__text{
@@ -121,8 +122,12 @@ text-decoration:none;
     background-color:white;
     }
     &__upload-label{
+      top:30px;
+      right:160px;
       position: absolute;
-
+    &__file-send{
+      display: none; 
+    }
     }
     &__btn{
     height:50px;
