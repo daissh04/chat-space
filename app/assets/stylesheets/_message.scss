@@ -1,0 +1,28 @@
+.chat-side{
+  width:300px;
+&__header{
+  background-color:#253141;
+  height:100px;
+  align-items: center;
+  display:flex;
+  padding:0 20px;
+  &__box{
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   font-weight: bold;
+    &__user-name{
+      color:white;
+    }
+  }
+}
+&__groups{
+  background-color:#2f3e51;
+  height: calc(100vh - 100px);
+  overflow:scroll;
+}
+}
+
+a { 
+text-decoration:none;
+}
