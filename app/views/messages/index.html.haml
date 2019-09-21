@@ -33,9 +33,9 @@
    %p.chat-main__message__box__text こんにちは！
  .chat-main__form
   .chat-main__form__new-message
-   %form{action: "/", method:"post"}
+   %form.chat-main__form__new-message__text2{action: "/", method:"post"}
     %input.chat-main__form__new-message__text{placeholder:"type text",name:"title", size:"40"}
     %label.chat-main__form__new-message__upload-label
      %i.fa.fa-image.fa-2x
      %input.chat-main__form__new-message__file-send{type: "file",name: "datafile"}
-    %input.chat-main__form__new-message__btn{type:"submit",name:"comit", value:"Send", size: "60"}
+   %input.chat-main__form__new-message__btn{type:"submit",name:"comit", value:"Send", size: "60"}
