@@ -4,12 +4,14 @@ class UsersController < ApplicationController
   end
 
   def update
-   if current_users.update(user_params)
+    if current_user.update(user_params)
     redirect_to root_path
-   else
+    else
     render :edit
+    end
   end
   
   def user_params
     params.require(:user).permit(:name,:email)
+  end
 end
