@@ -10,14 +10,16 @@
     = link_to edit_group_path(current_user) do
       .chat-main__main-header__btn Edit
   .chat-main__message
-    = render @messages
+    .chat-main__message__box
+      %p.chat-main__message__box__user-name daisuke
+      %p.chat-main__message__box__date 2019/09/15(Sun) 20:45:49
+      %p.chat-main__message__box__text こんにちは！
   .chat-main__form
     .chat-main__form__new-message
-      .form
-        = form_for [@group, @message] do |f|
-          = f.text_field :content, class: 'chat-main__form__new-message__text', placeholder: 'type a message'
-          .form__mask
-            = f.label :image, class: 'chat-main__form__new-message__upload-label' do
-              = fa_icon 'picture-o', class: 'icon'
-              = f.file_field :image, class: 'chat-main__form__new-message__file-send'
-          = f.submit 'Send', class: 'chat-main__form__new-message__btn'
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'chat-main__form__new-message__text', placeholder: 'type a message'
+        .chat-main__form__new-message__upload-label
+        = f.label :image do
+          = fa_icon 'picture-o', class: 'chat-main__form__new-message__icon'
+          = f.file_field :image, class: 'chat-main__form__new-message__file-send'
+        = f.submit 'Send', class: 'chat-main__form__new-message__btn'
