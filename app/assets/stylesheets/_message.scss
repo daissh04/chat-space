@@ -118,6 +118,10 @@ text-decoration:none;
       display:flex;
       width:100%;
       padding:18px 5px;
+        .new_message{
+          width:87%;
+        }
+
       &__text2{
         width:100%;
       }
@@ -136,8 +140,18 @@ text-decoration:none;
     &__file-send{
       display: none; 
     }
+
+    &__icon{
+      top:30px;
+      right:160px;
+      position: absolute;
+    }
+
     &__btn{
+    position: absolute;
     float:right;
+    top:15px;
+    right:20px;
     height:50px;
     width:100px;
     margin:0 20px 15px;
