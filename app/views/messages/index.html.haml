@@ -13,10 +13,11 @@
     = render @messages
   .chat-main__form
     .chat-main__form__new-message
-      = form_for [@group, @message] do |f|
-        = f.text_field :content, class: 'chat-main__form__new-message__text', placeholder: 'type a message'
-        .chat-main__form__new-message__upload-label
-        = f.label :image do
-          = fa_icon 'picture-o', class: 'chat-main__form__new-message__icon'
-          = f.file_field :image, class: 'chat-main__form__new-message__file-send'
-        = f.submit 'Send', class: 'chat-main__form__new-message__btn'
+      .form
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'chat-main__form__new-message__text', placeholder: 'type a message'
+          .form__mask
+            = f.label :image, class: 'chat-main__form__new-message__upload-label' do
+              = fa_icon 'picture-o', class: 'icon'
+              = f.file_field :image, class: 'chat-main__form__new-message__file-send'
+          = f.submit 'Send', class: 'chat-main__form__new-message__btn'
