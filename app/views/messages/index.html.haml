@@ -4,9 +4,12 @@
 .chat-main
   .chat-main__main-header
     .chat-main__main-header__left-box
-      %h.chat-main__main-header__left-box__group-name チームC
+      %h.chat-main__main-header__left-box__group-name 
+        =@group.name
       %li.chat-main__main-header__left-box__member Member:
-      %li.chat-main__main-header__left-box__member-list okapon daisuke
+      %li.chat-main__main-header__left-box__member-list
+        - @group.group_users.each do |group_user|
+          = group_user.user.name
     = link_to edit_group_path(current_user) do
       .chat-main__main-header__btn Edit
   .chat-main__message
@@ -19,4 +22,4 @@
         = f.label :image do
           = fa_icon 'picture-o', class: 'chat-main__form__new-message__icon'
           = f.file_field :image, class: 'chat-main__form__new-message__file-send'
-        = f.submit 'Send', class: 'chat-main__form__new-message__btn'
+        = f.submit 'Send', class: 'chat-main__form__new-message__btn',remote: true
