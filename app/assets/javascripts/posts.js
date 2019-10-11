@@ -24,7 +24,6 @@ $(document).on("turbolinks:load",function(){
     })
     .done(function(message){
 
-      console.log(message)
       var html = buildMessage(message)
       $('.chat-main__message').append(html)
       $('.chat-main__form__new-message__text').val('')
