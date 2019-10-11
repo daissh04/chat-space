@@ -160,6 +160,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.2.0)
       loofah (~> 2.2, >= 2.2.2)
+    rails-ujs (0.1.0)
+      railties (>= 3.1)
     railties (5.0.7.2)
       actionpack (= 5.0.7.2)
       activesupport (= 5.0.7.2)
@@ -221,7 +223,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
-    turbolinks (5.2.0)
+    turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
     tzinfo (1.2.5)
@@ -261,6 +263,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.7, >= 5.0.7.2)
   rails-controller-testing
+  rails-ujs
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   spring

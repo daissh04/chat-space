@@ -7,10 +7,16 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @group.messages.new(message_params)
-    respond_to do |format|
-      format.html
-      format.json
+    @message = @group.messages.create(message_params)
+    if @message.save
+      respond_to do |format|
+        format.json
+      end
+
+    else
+      @messages = @group.messages.includes(:user)
+      flash.now[:alert] = 'メッセージを入力してください。'
+      render :index
     end
   end
   
@@ -18,6 +24,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
+
     params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
   end
 
