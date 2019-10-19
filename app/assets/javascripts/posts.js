@@ -1,28 +1,15 @@
 $(document).on("turbolinks:load",function(){
   function buildMessage(message){ 
-  if (message.content && message.image.url){
+    var addImage ='';
+    if (message.image.url){/*なぜmessage.imageだけだとnot found objectになるのか？*/
+      addImage = `<div id="lower-message__image"><img src=${message.image.url}></div>`
+    }
     var html = `<div class="chat-main__message__box" data-message-id='${message.id}'>
     <p class="chat-main__message__box__user-name">${message.name}</p>
     <p class="chat-main__message__box__date">${message.created_at}</p>
     <p class="chat-main__message__box__text">${message.content}</p>
-    <div id="lower-message__image"><img src=${message.image}></div>
-    </div>`
-  }
-  else if(message.content){
-    var html = `<div class="chat-main__message__box" data-message-id='${message.id}'>
-    <p class="chat-main__message__box__user-name">${message.name}</p>
-    <p class="chat-main__message__box__date">${message.created_at}</p>
-    <p class="chat-main__message__box__text">${message.content}</p>
-    </div>`
-  }
-  
-  else if(message.image.url){
-    var html = `<div class="chat-main__message__box" data-message-id='${message.id}'>
-    <p class="chat-main__message__box__user-name">${message.name}</p>
-    <p class="chat-main__message__box__date">${message.created_at}</p>
-    <div id="lower-message__image"><img src=${message.image}></div>
-    </div>`
-  };
+    ${addImage}
+    </div>`;
   return html;
   }
 
@@ -54,42 +41,25 @@ $(document).on("turbolinks:load",function(){
 });
 
 $(document).on("turbolinks:load",function(){
-
-
   function buildMessageHTML(message){
-  if (message.content && message.image.url){
+  var addImage ='';
+  if (message.image.url){
+    addImage = `<div id="lower-message__image"><img src=${message.image.url}></div>`
+  }
     var insertHTML = `<div class="chat-main__message__box" data-message-id='${message.id}'>
     <p class="chat-main__message__box__user-name">${message.name}</p>
     <p class="chat-main__message__box__date">${message.created_at}</p>
     <p class="chat-main__message__box__text">${message.content}</p>
-    <div id="lower-message__image"><img src=${message.image}></div>
-    </div>`
-  }
-  else if(message.content){
-    var insertHTML = `<div class="chat-main__message__box" data-message-id='${message.id}'>
-    <p class="chat-main__message__box__user-name">${message.name}</p>
-    <p class="chat-main__message__box__date">${message.created_at}</p>
-    <p class="chat-main__message__box__text">${message.content}</p>
-    </div>`
-  }
-  
-  else if(message.image.url){
-    var insertHTML = `<div class="chat-main__message__box" data-message-id='${message.id}'>
-    <p class="chat-main__message__box__user-name">${message.name}</p>
-    <p class="chat-main__message__box__date">${message.created_at}</p>
-    <div id="lower-message__image"><img src=${message.image}></div>
-    </div>`
-  }
+    ${addImage}
+    </div>`;
   $('.chat-main__message').append(insertHTML)
-  };
-
+  }
   
   var reloadMessages = function() {
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
     var last_message_id = $('.chat-main__message__box:last').data('message-id')
     var group_id = $('.chat-main__main-header__left-box').data('group-id')
     var href = `/groups/${group_id}/api/messages`
-    console.log(last_message_id)
     $.ajax({
       url: href,
       type: 'get',
@@ -100,13 +70,12 @@ $(document).on("turbolinks:load",function(){
       if(messages.length !==0){
         messages.forEach(function(messages){
           buildMessageHTML(messages)
-          console.log(messages)
           $('.chat-main__message').animate({ scrollTop: $('.chat-main__message')[0].scrollHeight })
         })
       }
     })
     .fail(function() {
-      console.log('error');
+      alert('エラー');
     })
     }
   }
