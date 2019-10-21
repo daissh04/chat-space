@@ -35,7 +35,6 @@ $(document).on("turbolinks:load",function(){
       alert('エラー')
     })
   })
-  $('.chat-main__message').append(insertHTML)
     
     reloadMessages = function() {
       if (window.location.href.match(/\/groups\/\d+\/messages/)){
