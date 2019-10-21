@@ -52,7 +52,6 @@ $(document).on("turbolinks:load",function(){
           messages.forEach(function(messages){
             buildMessage(messages)
             var html = buildMessage(messages)
-            console.log(html)
             $('.chat-main__message').append(html)
             $('.chat-main__message').animate({ scrollTop: $('.chat-main__message')[0].scrollHeight })
           })
