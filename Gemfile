@@ -64,3 +64,7 @@ gem 'mini_magick'
 gem 'pry-rails'
 gem 'rails-ujs'
 
+group :production do
+  gem 'unicorn', '5.4.1'
+end
+
