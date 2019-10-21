@@ -1,9 +1,6 @@
 $(document).on("turbolinks:load",function(){
   function buildMessage(message){ 
-    var addImage ='';
-    if (message.image.url){/*なぜmessage.imageだけだとnot found objectになるのか？*/
-      addImage = `<div id="lower-message__image"><img src=${message.image.url}></div>`
-    }
+    var addImage = (message.image.url !== null)? `<div id="lower-message__image"><img src=${message.image.url}></div>` :''
     var html = `<div class="chat-main__message__box" data-message-id='${message.id}'>
     <p class="chat-main__message__box__user-name">${message.name}</p>
     <p class="chat-main__message__box__date">${message.created_at}</p>
@@ -38,46 +35,37 @@ $(document).on("turbolinks:load",function(){
       alert('エラー')
     })
   })
+  $('.chat-main__message').append(insertHTML)
+    
+    reloadMessages = function() {
+      if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      var last_message_id = $('.chat-main__message__box:last').data('message-id')
+      var group_id = $('.chat-main__main-header__left-box').data('group-id')
+      var href = `/groups/${group_id}/api/messages`
+      $.ajax({
+        url: href,
+        type: 'get',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+      .done(function(messages) {
+        if(messages.length !==0){
+          messages.forEach(function(messages){
+            buildMessage(messages)
+            var html = buildMessage(messages)
+            console.log(html)
+            $('.chat-main__message').append(html)
+            $('.chat-main__message').animate({ scrollTop: $('.chat-main__message')[0].scrollHeight })
+          })
+        }
+      })
+      .fail(function() {
+        alert('エラー');
+      })
+      }
+    }
+    setInterval(reloadMessages, 5000);
 });
 
-$(document).on("turbolinks:load",function(){
-  function buildMessageHTML(message){
-  var addImage ='';
-  if (message.image.url){
-    addImage = `<div id="lower-message__image"><img src=${message.image.url}></div>`
-  }
-    var insertHTML = `<div class="chat-main__message__box" data-message-id='${message.id}'>
-    <p class="chat-main__message__box__user-name">${message.name}</p>
-    <p class="chat-main__message__box__date">${message.created_at}</p>
-    <p class="chat-main__message__box__text">${message.content}</p>
-    ${addImage}
-    </div>`;
-  $('.chat-main__message').append(insertHTML)
-  }
-  
-  var reloadMessages = function() {
-    if (window.location.href.match(/\/groups\/\d+\/messages/)){
-    var last_message_id = $('.chat-main__message__box:last').data('message-id')
-    var group_id = $('.chat-main__main-header__left-box').data('group-id')
-    var href = `/groups/${group_id}/api/messages`
-    $.ajax({
-      url: href,
-      type: 'get',
-      dataType: 'json',
-      data: {id: last_message_id}
-    })
-    .done(function(messages) {
-      if(messages.length !==0){
-        messages.forEach(function(messages){
-          buildMessageHTML(messages)
-          $('.chat-main__message').animate({ scrollTop: $('.chat-main__message')[0].scrollHeight })
-        })
-      }
-    })
-    .fail(function() {
-      alert('エラー');
-    })
-    }
-  }
-  setInterval(reloadMessages, 5000);
-});
+
+
