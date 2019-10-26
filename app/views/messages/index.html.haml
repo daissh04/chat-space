@@ -10,7 +10,7 @@
       %li.chat-main__main-header__left-box__member-list
         - @group.group_users.each do |group_user|
           = group_user.user.name
-    = link_to edit_group_path(current_user) do
+    = link_to edit_group_path(@group.id) do
       .chat-main__main-header__btn Edit
   .chat-main__message
     = render @messages
