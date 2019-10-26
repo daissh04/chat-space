@@ -33,9 +33,10 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
+    @group_members = @group.users.where.not(id: current_user.id)
   end
 
   def group_params
-    params.require(:group).permit(:name, user_ids: [] )
+    params.require(:group).permit(:name, :user_ids=> [] )
   end
 end
